@@ -5,7 +5,6 @@ require 'pry'
 
 require 'haml'
 require "net/http"
-require 'sequel'
 require 'nokogiri'
 
 require 'pry'
