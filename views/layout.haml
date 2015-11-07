@@ -1,0 +1,25 @@
+!!! 5
+%html
+	%head
+		%title= "NDC Syntax Validator"
+		%meta{ :content => "", :name => "NDC Syntax Validator" }
+		%meta{ :content => "3 days", :name => "revisit-after" }
+		%link{ :href => "http://www.gnu.org/licenses/gpl-3.0.en.html", :rel => "license", :title => "The GNU General Public License v3" }
+		<!-- Latest compiled and minified CSS -->
+		%link{ :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :media => "screen", :rel => "stylesheet" }
+		<!-- Optional theme -->
+		%link{ :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" }
+		%link{ :href => '/share-buttons.css', :type => "text/css", :media => "screen", :rel => "stylesheet" }
+		%style{ :type => "text/css", :media => "screen" }
+
+		%script{ class: 'ga' }
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-69789510-1', 'auto');
+			ga('send', 'pageview');
+
+	%body
+
+		= yield
