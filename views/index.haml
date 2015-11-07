@@ -17,17 +17,18 @@
 			%div{:id => 'list', :class => "text-center"}
 				%ul{:class => "text-center pasadas-list"}
 		%div{:class => "col-md-4"}
-			%h4= "NDC Message"
-			%h4= "<span class='label label-info'>#{@ndc_message}</span>"
-			%h4= "Parsing Log"
-			-if @errors && @errors.empty?
-				%h4
-					%span{class: "label label-success"}= "Syntax OK!"
-			-else
-				%h4
-					%span{class: "label label-danger"}= "Errors Found (#{@errors.size})"
-				-@errors.each do |error|
-					%div{class: "panel panel-danger"}
-						%div{class: "panel-heading"}
-							%div{class: "panel-title"}= error.class.to_s
-						%div{class: "panel-body"}= error
+			-if @message && @errors
+				%h4= "NDC Message"
+				%h4= "<span class='label label-info'>#{@ndc_message}</span>"
+				%h4= "Parsing Log"
+				-if @errors.empty?
+					%h4
+						%span{class: "label label-success"}= "Syntax OK!"
+				-else
+					%h4
+						%span{class: "label label-danger"}= "Errors Found (#{@errors.size})"
+					-@errors.each do |error|
+						%div{class: "panel panel-danger"}
+							%div{class: "panel-heading"}
+								%div{class: "panel-title"}= error.class.to_s
+							%div{class: "panel-body"}= error
