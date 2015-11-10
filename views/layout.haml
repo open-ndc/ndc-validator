@@ -32,5 +32,12 @@
 			ga('send', 'pageview');
 
 	%body
+		%section{:class => "content container"}
+			%div{:class => "page-header text-left"}
+				%h1= "NDC Syntax Validator <small>by OpenNDC</small>"
 
-		= yield
+			= yield
+
+		%footer{:class => "content container"}
+			%div{:class => "text-center page-header"}
+				%p= "Made by <a href='http://open-ndc.org/' target='new'>OpenNDC</a> | <a href='https://github.com/open-ndc/ndc-validator' target='new'>Open-Source</a>"

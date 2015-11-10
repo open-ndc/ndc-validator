@@ -1,34 +1,31 @@
-%section{:class => "content container"}
-	%header{:class => "text-center"}
-		%h1= "NDC Syntax Validator"
-	%div{:class => "row"}
-		%div{:class => "col-md-8"}
-			%form{ :role => "form", :action => "/validate", :method => :post }
-				%div{ :class => "form-group" }
-					%label= "NDC Message Body"
-					%textarea{ :id => "xml_body", :name => "xml_body", :rows => 20, :class => "form-control", :placeholder => "Paste XML body here unwrapped and indented" }= @message
-				%div{ :class => "form-group" }
-					%label= "NDC Sechemas Version"
-					%select{ :id => "version", :name => "version", :class => "form-control"}
-						-SCHEMAS_VERSIONS.each do |v_key, v_value|
-							%option{:value => v_key}= v_value
-				%p{:class => "text-center"}
-					%button{ :type => "submit", :class => "btn btn-default"}= "Validate"
-			%div{:id => 'list', :class => "text-center"}
-				%ul{:class => "text-center pasadas-list"}
-		%div{:class => "col-md-4"}
-			-if @message && @errors
-				%h4= "NDC Message"
-				%h4= "<span class='label label-info'>#{@ndc_message}</span>"
-				%h4= "Parsing Log"
-				-if @errors.empty?
-					%h4
-						%span{class: "label label-success"}= "Syntax OK!"
-				-else
-					%h4
-						%span{class: "label label-danger"}= "Errors Found (#{@errors.size})"
-					-@errors.each do |error|
-						%div{class: "panel panel-danger"}
-							%div{class: "panel-heading"}
-								%div{class: "panel-title"}= error.class.to_s
-							%div{class: "panel-body"}= error
+%div{:class => "row"}
+	%div{:class => "col-md-8"}
+		%form{ :role => "form", :action => "/validate", :method => :post }
+			%div{ :class => "form-group" }
+				%label= "NDC Message Body"
+				%textarea{ :id => "xml_body", :name => "xml_body", :class => "form-control hidden", :placeholder => "Place XML here" }= @message
+			%div{ :class => "form-group" }
+				%label= "NDC Sechemas Version"
+				%select{ :id => "version", :name => "version", :class => "form-control"}
+					-SCHEMAS_VERSIONS.each do |v_key, v_value|
+						%option{:value => v_key}= v_value
+			%p{:class => "text-center"}
+				%button{ :type => "submit", :class => "btn btn-primary"}= "Validate"
+		%div{:id => 'list', :class => "text-center"}
+			%ul{:class => "text-center pasadas-list"}
+	%div{:class => "col-md-4"}
+		-if @ndc_message.present?
+			%h4= "NDC Message"
+			%h4= "<span class='label label-info'>#{@ndc_message}</span>"
+			%h4= "Parsing Output"
+			-if @errors.present?
+				%h4
+					%span{class: "label label-danger"}= "Errors Found (#{@errors.size})"
+				-@errors.each do |error|
+					%div{class: "panel panel-danger"}
+						%div{class: "panel-heading"}
+							%div{class: "panel-title"}= error.class.to_s
+						%div{class: "panel-body"}= error
+			-else
+				%h4
+					%span{class: "label label-success"}= "Syntax OK!"
