@@ -10,7 +10,7 @@ require 'nokogiri'
 require 'pry'
 
 SCHEMAS_DIR = "./schemas/"
-SCHEMAS_VERSIONS = {'v113-p15' => "Version 1.1.3-patch 15 (Oct 2015)"}
+SCHEMAS_VERSIONS = {'v113-p15-2' => "Version 1.1.3 - patch 15.2 (Oct 2015)"}
 get '/' do
   haml :index, :format => :html5
 end
