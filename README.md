@@ -1,4 +1,4 @@
-# ndc-validator
+# NDC validator
 NDC Syntax validator based on the IATA's official Schemas
 
 ## WEB Stack
