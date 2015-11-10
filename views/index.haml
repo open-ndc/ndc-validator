@@ -5,7 +5,7 @@
 				%label= "NDC Message Body"
 				%textarea{ :id => "xml_body", :name => "xml_body", :class => "form-control hidden", :placeholder => "Place XML here" }= @message
 			%div{ :class => "form-group" }
-				%label= "NDC Sechemas Version"
+				%label= "NDC Schemas Version"
 				%select{ :id => "version", :name => "version", :class => "form-control"}
 					-SCHEMAS_VERSIONS.each do |v_key, v_value|
 						%option{:value => v_key}= v_value
