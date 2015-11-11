@@ -13,6 +13,7 @@ require 'pry'
 
 module NDCValidator
   class IvalidNDCMessageError < RuntimeError; end
+  class EmptyMessageError < RuntimeError; end
   class NDCParseUndefinedError < RuntimeError; end
 end
 
@@ -32,18 +33,22 @@ post '/validate' do
       if !@ndc_message.empty?
         schemas_path = SCHEMAS_DIR + params[:version]
         Dir.chdir(schemas_path) do
-          schema_file = "#{@ndc_message}.xsd"
-          xsd = Nokogiri::XML::Schema(File.read(schema_file))
-          @errors = xsd.validate(doc)
+          begin
+            schema_file = "#{@ndc_message}.xsd"
+            xsd = Nokogiri::XML::Schema(File.read(schema_file))
+            @errors += xsd.validate(doc)
+          rescue
+            @errors << NDCValidator::IvalidNDCMessageError.new("Invalid/unknown NDC message")
+          end
         end
       else
-        @errors << NDCValidator::IvalidNDCMessageError.new("Invalid/unknown NDC method")
+        @errors << NDCValidator::EmptyMessageError.new("Can't parse an empty message")
       end
     else
       @errors << NDCValidator::NDCParseUndefinedError.new("Unsuccessful message parsing")
     end
   else
-    @errors << RuntimeError.new("Invalid/empty Message/Version")
+    @errors << RuntimeError.new("Empty Message/Version")
   end
   haml :index, :format => :html5
 end
