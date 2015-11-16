@@ -2,30 +2,31 @@
 	%div{:class => "col-md-8"}
 		%form{ :role => "form", :action => "/validate", :method => :post }
 			%div{ :class => "form-group" }
-				%label= "NDC Message Body"
-				%textarea{ :id => "xml_body", :name => "xml_body", :class => "form-control hidden", :placeholder => "Place XML here" }= @message
+				%h4= "NDC Message Body"
+				%textarea{ :id => "xml_body", :name => "xml_body", :class => "form-control hidden", :placeholder => "Place XML here", :default => "" }= (@message.present? ? @message.xml : "")
 			%div{ :class => "form-group" }
-				%label= "NDC Schemas Version"
+				%h4= "NDC Schemas Version"
 				%select{ :id => "version", :name => "version", :class => "form-control"}
 					-SCHEMAS_VERSIONS.each do |v_key, v_value|
 						%option{:value => v_key}= v_value
 			%p{:class => "text-center"}
+				%a{ :class => "btn btn-danger", :role => "button", :href => "/"}= "New Message"
 				%button{ :type => "submit", :class => "btn btn-primary"}= "Validate"
 		%div{:id => 'list', :class => "text-center"}
 			%ul{:class => "text-center pasadas-list"}
 	%div{:class => "col-md-4"}
-		-if @ndc_message.present?
+		-if @message.present?
 			%h4= "NDC Message"
-			%h4= "<span class='label label-info'>#{@ndc_message}</span>"
+			%h4= "<span class='label label-info'>#{@message.ndc_method}</span>"
 			%h4= "Parsing Output"
-			-if @errors.present?
+			-if @message.ndc_errors.present?
 				%h4
-					%span{class: "label label-danger"}= "Errors Found (#{@errors.size})"
-				-@errors.each do |error|
+					%span{class: "label label-danger"}= "Errors Found (#{@message.ndc_errors.size})"
+				-@message.ndc_errors.each do |error|
 					%div{class: "panel panel-danger"}
 						%div{class: "panel-heading"}
-							%div{class: "panel-title"}= error.class.to_s
-						%div{class: "panel-body"}= error
+							%div{class: "panel-title"}= error.first
+						%div{class: "panel-body"}= error.last
 			-else
 				%h4
 					%span{class: "label label-success"}= "Syntax OK!"
