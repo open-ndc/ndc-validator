@@ -5,7 +5,7 @@ require 'pry'
 
 require 'haml'
 require 'net/http'
-# require 'sequel'
+require 'sequel'
 require 'nokogiri'
 require './core_ext/object'
 
@@ -19,6 +19,13 @@ end
 
 SCHEMAS_DIR = "./schemas/"
 SCHEMAS_VERSIONS = {'v113-p15-2' => "Version 1.1.3 - patch 15.2 (Oct 2015)"}
+
+configure do
+  enable :partial_underscores
+	DB = Sequel.connect( ENV["DATABASE_URL"] || "sqlite://development.db" )
+	require "./models"
+end
+
 get '/' do
   haml :index, :format => :html5
 end
