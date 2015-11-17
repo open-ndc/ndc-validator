@@ -18,6 +18,9 @@
 		-if @message.present?
 			%h4= "NDC Message"
 			%h4= "<span class='label label-info'>#{@message.ndc_method}</span>"
+			%h4= "Share this Message"
+			%p
+				%input{ :id => "message_url", :type => "text", :class => "form-control", :value => (@url.present? ? @url : "") }		
 			%h4= "Parsing Output"
 			-if @message.ndc_errors.present?
 				%h4

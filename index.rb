@@ -69,6 +69,7 @@ end
 get '/message/:hash_id' do
   @message = Message[hash_id: params[:hash_id]]
   if @message.present? && @message.valid?
+    @url = "http://#{request.env["HTTP_HOST"]}/message/#{@message.hash_id}"
     haml :index, :format => :html5
   else
     haml :"404", layout: false, status: 404
