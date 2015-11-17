@@ -1,1 +1,1 @@
-bundle exec sequel sqlite://development.db
+sqlite://development.db
