@@ -33,7 +33,7 @@ GEM
     racksh (1.0.0)
       rack (>= 1.0)
       rack-test (>= 0.5)
-    sequel (4.28.0)
+    sequel (4.30.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
