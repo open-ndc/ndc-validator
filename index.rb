@@ -17,7 +17,11 @@ module NDCValidator
 end
 
 SCHEMAS_DIR = "./schemas/"
-SCHEMAS_VERSIONS = {'v113-p15-2' => "Version 1.1.3 - patch 15.2 (Oct 2015)"}
+SCHEMAS_VERSIONS = {
+  'v1-1-3' => "Version 1.1.3 (Nov 2014)",
+  'v15-2' => "Version 15.2 (Oct 2015)",
+  'v16-1' => "Version 16.1 (Feb 2016)"
+}
 
 configure do
   enable :partial_underscores

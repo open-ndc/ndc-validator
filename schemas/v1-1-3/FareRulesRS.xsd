@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by Rastko Ilic (JR Technologies, Inc.) -->
+<!-- Notice: This is NDC Draft Specification provided for pre-review by the members of the relevant governance groups, it is not provided for implementation in a production environment or considered to be the final  schema to support NDC business  requirements. The draft schema may, at any time up to final specification submission, undergo changes including, but not limited to, specific elements, element names/labels, annotations or message name as a result of the ongoing quality control process, and comments, which may be received following the pre-review. Implementation of this version is done so at the risk of the implementer or implementing company.
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.iata.org/IATA/EDIST" targetNamespace="http://www.iata.org/IATA/EDIST" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2014.2" id="NDC2014.2">
+	<xsd:include schemaLocation="edist_commontypes.xsd"/>
+	<xsd:include schemaLocation="edist_structures.xsd"/>
+	<!--
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+= / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / =
+     F A R E   R U L E S   R E S P O N S E   B U S I N E S S   O B J E C T
+= / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / = / =
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+	<xsd:element name="FareRulesRS">
+		<xsd:annotation>
+			<xsd:documentation source="description" xml:lang="en">The FareRules transaction set returns the filed details of a specific fare basis code (FBC).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element ref="Document"/>
+					<xsd:element name="Processing" type="ProcessingResultType" minOccurs="0"/>
+					<xsd:element name="Rules" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Fare Rules.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element ref="Departure"/>
+								<xsd:element ref="Arrival"/>
+								<xsd:element ref="FareBasisCode"/>
+								<xsd:element ref="AirlineID"/>
+								<xsd:element ref="FareCode" minOccurs="0"/>
+								<xsd:element name="Rule" maxOccurs="unbounded">
+									<xsd:annotation>
+										<xsd:documentation>Fare Rule Category and Description.</xsd:documentation>
+									</xsd:annotation>
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element ref="FareRuleCategory"/>
+											<xsd:element name="Text" type="DescriptionSimpleType" maxOccurs="unbounded">
+												<xsd:annotation>
+													<xsd:documentation>Fare Rule Text.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Metadata" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Metadata List(s).</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="FareRulesResMetadataType"/>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element ref="Policies" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="description" xml:lang="en">Message Policy information.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:sequence>
+					<xsd:element ref="Errors"/>
+				</xsd:sequence>
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="FareRulesResMetadataType">
+		<xsd:annotation>
+			<xsd:documentation source="description" xml:lang="en">Fare Rules Response Metadata definition.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Shopping" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Shopping Query-Related Metadata.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element ref="ShopMetadataGroup"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Other" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation source="description" xml:lang="en">Other Metadata Lists(s).</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="OtherMetadata" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation source="description" xml:lang="en">Other Metadata List.</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:choice>
+									<xsd:element ref="AircraftMetadatas"/>
+									<xsd:element ref="AirportMetadatas"/>
+									<xsd:element ref="CityMetadatas"/>
+									<xsd:element ref="CodesetMetadatas"/>
+									<xsd:element ref="ContactMetadatas"/>
+									<xsd:element ref="CountryMetadatas"/>
+									<xsd:element ref="CurrencyMetadatas"/>
+									<xsd:element ref="DescriptionMetadatas"/>
+									<xsd:element ref="EquivalentID_Metadatas"/>
+									<xsd:element ref="LanguageMetadatas"/>
+									<xsd:element ref="PaymentCardMetadatas"/>
+									<xsd:element ref="PaymentFormMetadatas"/>
+									<xsd:element ref="PriceMetadatas"/>
+									<xsd:element ref="RuleMetadatas"/>
+									<xsd:element ref="StateProvMetadatas"/>
+									<xsd:element ref="ZoneMetadatas"/>
+									<xsd:element ref="AddressMetadatas"/>
+								</xsd:choice>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
