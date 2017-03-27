@@ -20,7 +20,9 @@ SCHEMAS_DIR = "./schemas/"
 SCHEMAS_VERSIONS = {
   'v1-1-3' => "Version 1.1.3 (Nov 2014)",
   'v15-2' => "Version 15.2 (Oct 2015)",
-  'v16-1' => "Version 16.1 (Feb 2016)"
+  'v16-1' => "Version 16.1 (Feb 2016)",
+  'v16-2' => "Version 16.2 (Sep 2016)",
+  'v17-1' => "Version 17.1 (Mar 2017)"
 }
 
 configure do
