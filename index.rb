@@ -22,7 +22,8 @@ SCHEMAS_VERSIONS = {
   'v15-2' => "Version 15.2 (Oct 2015)",
   'v16-1' => "Version 16.1 (Feb 2016)",
   'v16-2' => "Version 16.2 (Sep 2016)",
-  'v17-1' => "Version 17.1 (Mar 2017)"
+  'v17-1' => "Version 17.1 (Mar 2017)",
+  'v17-2' => "Version 17.2 (Apr 2017)"
 }
 
 configure do
